@@ -1,5 +1,5 @@
 // Export all models
 module.exports = {
-  Article: require('./Article'),
+  Collection: require('./Collection'),
   User: require('./User'),
 }
