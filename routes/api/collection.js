@@ -1,18 +1,18 @@
 // Require dependencies
 const express = require('express')
-const articlesController = require('../../controllers/articlesController')
+const collectionController = require('../../controllers/collectionController')
 
 const router = express.Router()
 
-// If rout is '/api/articles'
+// If rout is '/api/collection'
 router.route('/')
-  .get(articlesController.findAll)
-  .post(articlesController.create)
+  .get(collectionController.findAll)
+  .post(collectionController.create)
 
-// If rout is '/api/articles/:id'
+// If rout is '/api/collection/:id'
 router.route('/:id')
-  .get(articlesController.findById)
-  .put(articlesController.update)
-  .delete(articlesController.remove)
+  .get(collectionController.findById)
+  .put(collectionController.update)
+  .delete(collectionController.remove)
 
 module.exports = router
