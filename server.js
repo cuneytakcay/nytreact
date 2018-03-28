@@ -11,27 +11,21 @@ const PORT = process.env.PORT || '3001'
 
 // Parse application
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
-// Serve static content from public folder 
-app.use(express.static('public'))
+// Serve static content
+app.use(express.static('client/build'))
 
 // Set up morgan logger
 app.use(logger('dev'))
 
 // Require and use routing modules
-app.use(require('./routes/index.js'))
+app.use(require('./routes'))
 
-// Set up mongoDB database
-const databaseUri = 'mongodb://localhost/nyt'
-
-if (process.env.MONGODB_URI) {
-	mongoose.connect(process.env.MONGODB_URI)
-} else {
-	mongoose.connect(databaseUri)
-}
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nyt");
 
 // Start the server
 app.listen(PORT, () => {
-	console.log('Server is running on port', PORT)
+	console.log(`Server is running on port ${PORT}`)
 })
