@@ -1,6 +1,6 @@
 // Require dependencies
 const express = require('express')
-const articlesController = require('../../controllers/articlesController')
+const articlesController = require('../../controllers/collectionController')
 
 const router = express.Router()
 

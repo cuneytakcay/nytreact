@@ -15,23 +15,27 @@ class Articles extends React.Component {
     endYear: ''
   }
 
-  componentDidMount() {
-    this.loadArticles()
-  }
+  // componentDidMount() {
+  //   this.loadArticles()
+  // }
 
-  loadArticles = () => {
-    API.getArticles()
-      .then(res =>
-        this.setState({ articles: res.data, topic: '', startYear: '', endYear: '' })
-      )
-      .catch(err => console.log(err))
-  }
+  // loadArticles = () => {
+  //   API.getArticles()
+  //     .then(res =>
+  //       this.setState({ 
+  //         articles: res.data, 
+  //         topic: '', 
+  //         startYear: '', 
+  //         endYear: '' })
+  //     )
+  //     .catch(err => console.log(err))
+  // }
 
-  removeArticle = id => {
-    API.removeArticle(id)
-      .then(res => this.loadArticles())
-      .catch(err => console.log(err))
-  }
+  // removeArticle = id => {
+  //   API.removeArticle(id)
+  //     .then(res => this.loadArticles())
+  //     .catch(err => console.log(err))
+  // }
 
   handleInputChange = event => {
     const { name, value } = event.target
@@ -42,15 +46,18 @@ class Articles extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault()
-    if (this.state.topic) {
-      API.saveArticle({
-        topic: this.state.topic,
-        startYear: this.state.startYear,
-        endYear: this.state.endYear
+    API.getArticles(this.state.topic)
+      .then(res => {
+        this.setState({
+          articles: res.data,
+          topic: '',
+          startYear: '',
+          endYear: '',
+        })
+        console.log(this.state.articles)
+        console.log(this.state.articles.length)
       })
-        .then(res => this.loadArticles())
-        .catch(err => console.log(err))
-    }
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -94,11 +101,11 @@ class Articles extends React.Component {
             </Subtitle>
             {this.state.articles.length ? (
               <List>
-                {this.state.articles.map(article => (
+                {this.state.articles.data.response.docs.map(article => (
                   <ListItem key={article._id}>
                     <Link to={'/articles/' + article._id}>
                       <strong>
-                        {article.topic} by {article.startYear}
+                        {article.headline}
                       </strong>
                     </Link>
                     <DeleteBtn onClick={() => this.deleteArticle(article._id)} />

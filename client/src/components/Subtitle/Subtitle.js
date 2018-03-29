@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Subtitle = props => (
+const Subtitle = ({ children }) => (
 	<div style={{ height: 100, clear: 'both' }}>
 		{children}
 	</div>
