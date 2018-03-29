@@ -49,7 +49,7 @@ class Articles extends React.Component {
     API.getArticles(this.state.topic)
       .then(res => {
         this.setState({
-          articles: res.data,
+          articles: res.data.response.docs,
           topic: '',
           startYear: '',
           endYear: '',
@@ -101,12 +101,10 @@ class Articles extends React.Component {
             </Subtitle>
             {this.state.articles.length ? (
               <List>
-                {this.state.articles.data.response.docs.map(article => (
+                {this.state.articles.map(article => (
                   <ListItem key={article._id}>
                     <Link to={'/articles/' + article._id}>
-                      <strong>
-                        {article.headline}
-                      </strong>
+                      {article.headline.main}
                     </Link>
                     <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
                   </ListItem>
