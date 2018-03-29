@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import API from '../../utils/API'
-import DeleteBtn from '../../components/DeleteBtn'
+import { DeleteBtn, SaveBtn } from '../../components/Button'
 import { FormBtn, Input } from '../../components/Form'
 import { Col, Container, Row } from '../../components/Grid'
 import { List, ListItem } from '../../components/List'
@@ -9,38 +9,47 @@ import Subtitle from '../../components/Subtitle'
 
 class Articles extends React.Component {
   state = {
-    articles: [], 
+    articles: [],
+    savedArticles: [], 
     topic: '',
     startYear: '',
-    endYear: ''
+    endYear: '',
   }
 
-  // componentDidMount() {
-  //   this.loadArticles()
-  // }
+  componentDidMount() {
+    this.loadSavedArticles()
+  }
 
-  // loadArticles = () => {
-  //   API.getArticles()
-  //     .then(res =>
-  //       this.setState({ 
-  //         articles: res.data, 
-  //         topic: '', 
-  //         startYear: '', 
-  //         endYear: '' })
-  //     )
-  //     .catch(err => console.log(err))
-  // }
+  loadSavedArticles = () => {
+    API.getSavedArticles()
+      .then(res => this.setState({
+        savedArticles: res.data,
+      }))
+      .catch(err => console.log(err))
+  }
 
-  // removeArticle = id => {
-  //   API.removeArticle(id)
-  //     .then(res => this.loadArticles())
-  //     .catch(err => console.log(err))
-  // }
+  saveArticle = article => {
+    console.log(article)
+    API.saveArticle({
+      title: article.headline.main,
+      link: article.web_url,
+      date: article.pub_date,
+    })
+      .then(res => this.loadSavedArticles())
+      .catch(err => console.log(err))
+  }
+
+  deleteArticle = id => {
+    console.log(`Article with id ${id} will be deleted`)
+    API.deleteArticle(id)
+      .then(res => this.loadSavedArticles())
+      .catch(err => console.log(err))
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target
     this.setState({
-      [name]: value
+      [name]: value,
     })
   }
 
@@ -103,10 +112,12 @@ class Articles extends React.Component {
               <List>
                 {this.state.articles.map(article => (
                   <ListItem key={article._id}>
-                    <Link to={'/articles/' + article._id}>
-                      {article.headline.main}
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+                    <h4>{article.headline.main}</h4>
+                    <a href={article.web_url}>
+                      {article.web_url}
+                    </a>
+                    <p>{article.pub_date}</p>
+                    <SaveBtn onClick={() => this.saveArticle(article)} />
                   </ListItem>
                 ))}
               </List>
@@ -118,6 +129,22 @@ class Articles extends React.Component {
             <Subtitle>
               <h2>Saved Articles</h2>
             </Subtitle>
+            {this.state.savedArticles.length ? (
+              <List>
+                {this.state.savedArticles.map(article => (
+                  <ListItem key={article._id}>
+                    <h4>{article.headline.main}</h4>
+                    <a href={article.web_url}>
+                      {article.web_url}
+                    </a>
+                    <p>{article.pub_date}</p>
+                    <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No saved articles to display</h3>
+            )}
           </Col>
         </Row>
       </Container>
