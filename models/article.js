@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 // Create a new UserSchema object
-const CollectionSchema = new Schema({
+const ArticleSchema = new Schema({
   // 'title' must be unique and of type String
   title: {
     type: String,
@@ -22,8 +22,8 @@ const CollectionSchema = new Schema({
   },
 })
 
-// Create Collection model using the schema and mongoose's model method
-const Collection = mongoose.model('Collection', CollectionSchema)
+// Create Article model using the schema and mongoose's model method
+const Article = mongoose.model('Article', ArticleSchema)
 
-// Export the Collection model
-module.exports = Collection
+// Export the Article model
+module.exports = Article
