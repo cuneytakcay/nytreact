@@ -1,8 +1,7 @@
 import React from 'react'
-import './Button.css'
 
 export const SaveBtn = props => (
-  <button className='' {...props}>
+  <button className='btn btn-sm btn-success' {...props}>
     Save Article
   </button>
 )

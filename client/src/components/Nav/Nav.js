@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Nav = props => (
-  <nav className='navbar navbar-inverse navbar-top'>
+  <nav className='navbar bg-success'>
     <div className='container-fluid'>
       <div className='navbar-header'>
         <button type='button' className='collapsed navbar-toggle'>
@@ -10,9 +10,11 @@ const Nav = props => (
           <span className='icon-bar' />
           <span className='icon-bar' />
         </button>
-        <a href='/' className='navbar-brand'>
-          NYT Article Scrubber
-        </a>
+        <h1>
+          <a href='/' className='navbar-brand'>
+            NYT Article Scrubber
+          </a>
+        </h1>
       </div>
     </div>
   </nav>
