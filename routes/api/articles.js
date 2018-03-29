@@ -9,4 +9,8 @@ router.route('/')
 	.get(articlesController.findAll)
   .post(articlesController.create)
 
+// If rout is 'api/articles/:id'
+router.route('/:id')
+	.delete(articlesController.remove)
+
 module.exports = router
