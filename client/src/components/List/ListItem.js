@@ -1,7 +1,6 @@
 import React from 'react'
+import { ListGroupItem } from 'reactstrap'
 
 export const ListItem = props => (
-  <li className='list-group-item'>
-    {props.children}
-  </li>
+  <ListGroupItem>{props.children}</ListGroupItem>
 )

@@ -1,8 +1,9 @@
 import React from 'react'
+import { Button } from 'reactstrap'
 
 export const DeleteBtn = props => (
-  <button className='btn btn-sm btn-danger' {...props}>
+  <Button size='sm' color='danger' {...props}>
     Remove Article
-  </button>
+  </Button>
 )
 

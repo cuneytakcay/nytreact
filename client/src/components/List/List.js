@@ -1,12 +1,9 @@
 import React from 'react'
-import './List.css'
+import { ListGroup } from 'reactstrap'
 
-export const List = ({ children }) => {
-  return (
-    <div className='list-overflow-container'>
-      <ul className='list-group'>
-        {children}
-      </ul>
-    </div>
-  )
-}
+export const List = ({ children }) => (
+	<div style={{ 'overflowX': 'hidden', 'overflowY': 'scroll', 'maxHeight': 500 }}>
+  	<ListGroup>{children}</ListGroup>
+  </div>
+)
+

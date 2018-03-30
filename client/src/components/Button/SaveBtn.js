@@ -1,7 +1,8 @@
 import React from 'react'
+import { Button } from 'reactstrap'
 
 export const SaveBtn = props => (
-  <button className='btn btn-sm btn-success' {...props}>
+  <Button size='sm' color='success' {...props}>
     Save Article
-  </button>
+  </Button>
 )

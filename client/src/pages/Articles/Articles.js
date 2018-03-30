@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Container, Row, Col } from 'reactstrap'
 import API from '../../utils/API'
 import { DeleteBtn, SaveBtn } from '../../components/Button'
 import { FormBtn, Input } from '../../components/Form'
-import { Col, Container, Row } from '../../components/Grid'
 import { List, ListItem } from '../../components/List'
 import Subtitle from '../../components/Subtitle'
 
@@ -71,61 +71,67 @@ class Articles extends React.Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container>
         <Row>
-          <Col size='md-4 sm-12'>
-            <Subtitle>
-              <h2>Search Articles</h2>
-            </Subtitle>
-            <form>
-              <Input
-                value={this.state.topic}
-                onChange={this.handleInputChange}
-                name='topic'
-                placeholder='Topic (required)'
-              />
-              <Input
-                value={this.state.startYear}
-                onChange={this.handleInputChange}
-                name='startYear'
-                placeholder='Start Year (Optional)'
-              />
-              <Input
-                value={this.state.endYear}
-                onChange={this.handleInputChange}
-                name='endYear'
-                placeholder='End Year (Optional)'
-              />
-              <FormBtn
-                disabled={!(this.state.topic)}
-                onClick={this.handleFormSubmit}
-              >
-                Search
-              </FormBtn>
-            </form>
+          <Col md='6' sm='12'>
+            <Row>
+              <Col>
+                <Subtitle>
+                  <h2>Search Articles</h2>
+                </Subtitle>
+                <form>
+                  <Input
+                    value={this.state.topic}
+                    onChange={this.handleInputChange}
+                    name='topic'
+                    placeholder='Topic (required)'
+                  />
+                  <Input
+                    value={this.state.startYear}
+                    onChange={this.handleInputChange}
+                    name='startYear'
+                    placeholder='Start Year (Optional)'
+                  />
+                  <Input
+                    value={this.state.endYear}
+                    onChange={this.handleInputChange}
+                    name='endYear'
+                    placeholder='End Year (Optional)'
+                  />
+                  <FormBtn
+                    disabled={!(this.state.topic)}
+                    onClick={this.handleFormSubmit}
+                  >
+                    Search
+                  </FormBtn>
+                </form>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Subtitle>
+                  <h2>Article Results</h2>
+                </Subtitle>
+                {this.state.articles.length ? (
+                  <List>
+                    {this.state.articles.map(article => (
+                      <ListItem key={article._id}>
+                        <h4>{article.headline.main}</h4>
+                        <a href={article.web_url}>
+                          {article.web_url}
+                        </a>
+                        <p>{article.pub_date}</p>
+                        <SaveBtn onClick={() => this.saveArticle(article)} />
+                      </ListItem>
+                    ))}
+                  </List>
+                ) : (
+                  <p>No Results to Display</p>
+                )}
+              </Col>
+            </Row>    
           </Col>
-          <Col size='md-4 sm-12'>
-            <Subtitle>
-              <h2>Article Results</h2>
-            </Subtitle>
-            {this.state.articles.length ? (
-              <List>
-                {this.state.articles.map(article => (
-                  <ListItem key={article._id}>
-                    <h4>{article.headline.main}</h4>
-                    <a href={article.web_url}>
-                      {article.web_url}
-                    </a>
-                    <p>{article.pub_date}</p>
-                    <SaveBtn onClick={() => this.saveArticle(article)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-          <Col size='md-4 sm-12'>
+          <Col md='6' sm='12'>
             <Subtitle>
               <h2>Saved Articles</h2>
             </Subtitle>
@@ -143,7 +149,7 @@ class Articles extends React.Component {
                 ))}
               </List>
             ) : (
-              <h3>No saved articles to display</h3>
+              <p>No saved articles to display</p>
             )}
           </Col>
         </Row>
