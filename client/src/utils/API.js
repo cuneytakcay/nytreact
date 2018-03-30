@@ -1,6 +1,6 @@
 import axios from 'axios'
 const url = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q='
-const apiKey = '&api-key=ba44e7bc259943cb93ae5943f60d08fd'
+const apiKey = '&api-key=b9f91d369ff59547cd47b931d8cbc56b:0:74623931'
 
 export default {
 	// Gets last 10 matching articles from NYT API
