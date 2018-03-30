@@ -133,11 +133,11 @@ class Articles extends React.Component {
               <List>
                 {this.state.savedArticles.map(article => (
                   <ListItem key={article._id}>
-                    <h4>{article.headline.main}</h4>
-                    <a href={article.web_url}>
-                      {article.web_url}
+                    <h4>{article.title}</h4>
+                    <a href={article.link}>
+                      {article.link}
                     </a>
-                    <p>{article.pub_date}</p>
+                    <p>{article.date}</p>
                     <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
                   </ListItem>
                 ))}
