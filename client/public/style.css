@@ -1,13 +1,16 @@
 body {
 	font-family: 'Crete Round', serif;
+	font-size: 16px;
 }
 
 h1 {
 	font-family: 'Abril Fatface', cursive;
+	font-size: 200%;
 }
 
 h2 {
 	font-family: 'Francois One', sans-serif;
+	font-size: 160%;
 }
 
 input, button {
@@ -16,4 +19,29 @@ input, button {
 
 a {
 	cursor: pointer;
+	font-size: 95%;
+}
+
+.banner {
+	margin-right: -15px;
+	margin-left: -15px;
+	min-height: 100px;
+	border-bottom: 8px solid #28a745;
+}
+
+.toggler {
+	box-shadow: 0 0 0 #000;
+}
+
+/* ============= Media Queries ============= */
+@media screen and (max-width: 769px) {
+  h1 {
+		font-size: 170%;
+	}
+}
+
+@media screen and (max-width: 464px) {	
+	h1 {
+		font-size: 140%;
+	}	
 }
