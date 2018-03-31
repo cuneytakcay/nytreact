@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Subtitle = ({ children }) => (
-	<div className='text-success' style={{ 'margin-top': 20, 'margin-bottom': 20 }}>
+	<div className='text-dark shadow' style={{ 'marginTop': 20, 'marginBottom': 20 }}>
 		{children}
 	</div>
 )

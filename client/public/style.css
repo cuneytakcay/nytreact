@@ -1,0 +1,19 @@
+body {
+	font-family: 'Crete Round', serif;
+}
+
+h1 {
+	font-family: 'Abril Fatface', cursive;
+}
+
+h2 {
+	font-family: 'Francois One', sans-serif;
+}
+
+input, button {
+	box-shadow: 0 2px 25px #bbb;
+}
+
+a {
+	cursor: pointer;
+}

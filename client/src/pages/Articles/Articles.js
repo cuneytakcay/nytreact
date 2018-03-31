@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, Badge } from 'reactstrap'
 import API from '../../utils/API'
 import { DeleteBtn, SaveBtn } from '../../components/Button'
 import { FormBtn, Input } from '../../components/Form'
@@ -51,6 +51,11 @@ class Articles extends React.Component {
     this.setState({
       [name]: value,
     })
+  }
+
+  formatDate = date => {
+    const d = new Date(date)
+    return d.toDateString()
   }
 
   handleFormSubmit = event => {
@@ -117,16 +122,16 @@ class Articles extends React.Component {
                     {this.state.articles.map(article => (
                       <ListItem key={article._id}>
                         <h4>{article.headline.main}</h4>
-                        <a href={article.web_url}>
+                        <a href={article.web_url} target="_blank">
                           {article.web_url}
                         </a>
-                        <p>{article.pub_date}</p>
+                        <p>{this.formatDate(article.pub_date)}</p>
                         <SaveBtn onClick={() => this.saveArticle(article)} />
                       </ListItem>
                     ))}
                   </List>
                 ) : (
-                  <p>No Results to Display</p>
+                  <p>Please fill out the form and press "Search" to display articles.</p>
                 )}
               </Col>
             </Row>    
@@ -143,13 +148,13 @@ class Articles extends React.Component {
                     <a href={article.link}>
                       {article.link}
                     </a>
-                    <p>{article.date}</p>
+                    <p>{this.formatDate(article.date)}</p>
                     <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
                   </ListItem>
                 ))}
               </List>
             ) : (
-              <p>No saved articles to display</p>
+              <p>There aren't any saved articles in your saved list.</p>
             )}
           </Col>
         </Row>

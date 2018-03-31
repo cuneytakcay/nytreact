@@ -18,12 +18,12 @@ class Banner extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div style={{ "borderBottom": "8px solid #28a745" }}>
         <Navbar color='dark' dark expand='md'>
-          <NavbarBrand href='/' className='mr-auto'><h1>NYT Article Scrubber</h1></NavbarBrand>
+          <NavbarBrand href='/' className='mr-auto ml-5'><h1>NYT Article Search</h1></NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} />
           <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav className='ml-auto' navbar>
+            <Nav className='ml-auto mr-5' navbar>
               <NavItem>
                 <NavLink href='/user/'>Log in</NavLink>
               </NavItem>
