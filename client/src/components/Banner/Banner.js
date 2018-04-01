@@ -21,7 +21,7 @@ class Banner extends React.Component {
     return (
       <Navbar className='banner' color='dark' dark expand='md'>
         <NavbarBrand href='/' className='mr-auto ml-5 pl-4'><h1>NYT Article Search</h1></NavbarBrand>
-        <NavbarToggler onClick={this.toggleNavbar} className='toggler' />
+        <NavbarToggler onClick={this.toggleNavbar} className='toggler ml-3 mr-5' />
         <Collapse isOpen={!this.state.collapsed} navbar>
           <Nav className='ml-auto mr-5 pr-4' navbar>
             <NavItem>
