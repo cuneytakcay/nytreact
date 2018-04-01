@@ -37,6 +37,11 @@ a {
 	box-shadow: 0 0 0 #000;
 }
 
+.form-control::-webkit-input-placeholder { color: #ddd }
+.form-control::-moz-placeholder { color: #ddd }
+.form-control:-ms-input-placeholder { color: #ddd }
+.form-control:-moz-placeholder { color: #ddd }
+
 /* ============= Media Queries ============= */
 @media screen and (max-width: 769px) {
   h1 {
