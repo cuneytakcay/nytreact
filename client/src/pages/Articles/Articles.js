@@ -1,12 +1,10 @@
 import React from 'react'
-import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Row, Col,
-         Collapse, Navbar, NavbarToggler, NavbarBrand } from 'reactstrap'
+import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap'
 import API from '../../utils/API'
 import { DeleteBtn, SaveBtn } from '../../components/Button'
 import { FormBtn, Input } from '../../components/Form'
 import { List, ListItem } from '../../components/List'
 import Subtitle from '../../components/Subtitle'
-import Banner from '../../components/Banner'
 import classnames from 'classnames'
 
 class Articles extends React.Component {
@@ -93,8 +91,6 @@ class Articles extends React.Component {
   render() {
     return (
       <Container fluid>
-        <Banner />
-
         <Container>
         <Nav tabs>
           <NavItem>

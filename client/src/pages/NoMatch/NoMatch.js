@@ -1,11 +1,9 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import Subtitle from '../../components/Subtitle'
-import Banner from '../../components/Banner'
 
 const NoMatch = () => (
   <Container fluid>
-  	<Banner />
   	<Container>
 	    <Row>
 	      <Col md='12'>
