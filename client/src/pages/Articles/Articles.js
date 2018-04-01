@@ -83,7 +83,7 @@ class Articles extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault()
-    API.getArticles(this.state.topic)
+    API.getArticles(this.state.topic, this.state.startYear, this.state.endYear)
       .then(res => {
         this.setState({
           articles: res.data.response.docs,
@@ -154,13 +154,13 @@ class Articles extends React.Component {
                       value={this.state.startYear}
                       onChange={this.handleInputChange}
                       name='startYear'
-                      placeholder='Start Year (Optional)'
+                      placeholder='Start Year (required)'
                     />
                     <Input
                       value={this.state.endYear}
                       onChange={this.handleInputChange}
                       name='endYear'
-                      placeholder='End Year (Optional)'
+                      placeholder='End Year (required)'
                     />
                     <FormBtn
                       disabled={!(this.state.topic)}
