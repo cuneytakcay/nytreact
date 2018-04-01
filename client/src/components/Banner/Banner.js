@@ -1,5 +1,6 @@
 import React from 'react'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import './Banner.css'
 
 class Banner extends React.Component {
   constructor(props) {
@@ -23,6 +24,9 @@ class Banner extends React.Component {
         <NavbarToggler onClick={this.toggleNavbar} className='toggler' />
         <Collapse isOpen={!this.state.collapsed} navbar>
           <Nav className='ml-auto mr-5 pr-4' navbar>
+            <NavItem>
+              <NavLink href='/'>Home</NavLink>
+            </NavItem>
             <NavItem>
               <NavLink href='/user/'>Log in</NavLink>
             </NavItem>
