@@ -18,22 +18,20 @@ class Banner extends React.Component {
   }
   render() {
     return (
-      <div style={{ "borderBottom": "8px solid #28a745" }}>
-        <Navbar color='dark' dark expand='md'>
-          <NavbarBrand href='/' className='mr-auto ml-5'><h1>NYT Article Search</h1></NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} />
-          <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav className='ml-auto mr-5' navbar>
-              <NavItem>
-                <NavLink href='/user/'>Log in</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href='/user/'>Sign up</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
+      <Navbar className='banner' color='dark' dark expand='md'>
+        <NavbarBrand href='/' className='mr-auto ml-5 pl-4'><h1>NYT Article Search</h1></NavbarBrand>
+        <NavbarToggler onClick={this.toggleNavbar} className='toggler' />
+        <Collapse isOpen={!this.state.collapsed} navbar>
+          <Nav className='ml-auto mr-5 pr-4' navbar>
+            <NavItem>
+              <NavLink href='/user/'>Log in</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='/user/'>Sign up</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     )
   }
 }

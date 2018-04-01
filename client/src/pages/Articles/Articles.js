@@ -6,13 +6,13 @@ import { DeleteBtn, SaveBtn } from '../../components/Button'
 import { FormBtn, Input } from '../../components/Form'
 import { List, ListItem } from '../../components/List'
 import Subtitle from '../../components/Subtitle'
+import Banner from '../../components/Banner'
 import classnames from 'classnames'
 
 class Articles extends React.Component {
   constructor(props) {
     super(props)
 
-    this.toggleNavbar = this.toggleNavbar.bind(this)
     this.toggle = this.toggle.bind(this)
     this.state = {
       articles: [],
@@ -21,7 +21,6 @@ class Articles extends React.Component {
       startYear: '',
       endYear: '',
       activeTab: '1',
-      collapsed: true,
     }
   }
 
@@ -31,12 +30,6 @@ class Articles extends React.Component {
         activeTab: tab
       })
     }
-  }
-
-  toggleNavbar() {
-    this.setState({
-      collapsed: !this.state.collapsed
-    })
   }
 
   componentDidMount() {
@@ -100,20 +93,7 @@ class Articles extends React.Component {
   render() {
     return (
       <Container fluid>
-        <Navbar className='banner' color='dark' dark expand='md'>
-          <NavbarBrand href='/' className='mr-auto ml-5 pl-4'><h1>NYT Article Search</h1></NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className='toggler' />
-          <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav className='ml-auto mr-5 pr-4' navbar>
-              <NavItem>
-                <NavLink href='/user/'>Log in</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href='/user/'>Sign up</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
+        <Banner />
 
         <Container>
         <Nav tabs>
