@@ -13,11 +13,6 @@ const PORT = process.env.PORT || '3001'
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// Serve static content, for production only!
-if( process.env.NODE_ENV === 'production' ){
-  app.use(express.static('client/build'))
-}
-
 // Set up morgan logger
 app.use(logger('dev'))
 
@@ -26,6 +21,7 @@ app.use(require('./routes'))
 
 // For production only, to serve the index.html
 if( process.env.NODE_ENV === 'production' ){
+	app.use(express.static('client/build'))
   app.get('*', (req, res) => {
     res.sendFile(__dirname + '/client/build/index.html')
   })
