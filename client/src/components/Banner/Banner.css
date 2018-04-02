@@ -1,3 +1,14 @@
+h1 {
+	font-family: 'Abril Fatface', cursive;
+	font-size: 200%;
+}
+
+a {
+	cursor: pointer;
+	font-family: 'Crete Round', serif;
+	font-size: 16px;
+}
+
 .banner {
 	margin-right: -15px;
 	margin-left: -15px;

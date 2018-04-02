@@ -5,6 +5,7 @@ import { DeleteBtn, SaveBtn } from '../../components/Button'
 import { FormBtn, Input } from '../../components/Form'
 import { List, ListItem } from '../../components/List'
 import Subtitle from '../../components/Subtitle'
+import ModalPicker from '../../components/Modal'
 import classnames from 'classnames'
 
 class Articles extends React.Component {
@@ -19,6 +20,8 @@ class Articles extends React.Component {
       startYear: '',
       endYear: '',
       activeTab: '1',
+      searchModal: false,
+      saveModel: false,
     }
   }
 
@@ -81,6 +84,7 @@ class Articles extends React.Component {
           topic: '',
           startYear: '',
           endYear: '',
+          searchModal: true,
         })
         console.log(this.state.articles)
         console.log(this.state.articles.length)
@@ -90,8 +94,7 @@ class Articles extends React.Component {
 
   render() {
     return (
-      <Container fluid>
-        <Container>
+      <Container>
         <Nav tabs>
           <NavItem>
             <NavLink
@@ -112,95 +115,90 @@ class Articles extends React.Component {
         </Nav>
 
         <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId='1'>
-            <Container>
-              <Row>
-                <Col md='6' sm='12'>
-                  <Subtitle>
-                    <h2>Search Articles</h2>
-                  </Subtitle>
-                  <form>
-                    <Input
-                      value={this.state.topic}
-                      onChange={this.handleInputChange}
-                      name='topic'
-                      placeholder='Topic (required)'
-                    />
-                    <Input
-                      value={this.state.startYear}
-                      onChange={this.handleInputChange}
-                      name='startYear'
-                      placeholder='Start Year (required)'
-                    />
-                    <Input
-                      value={this.state.endYear}
-                      onChange={this.handleInputChange}
-                      name='endYear'
-                      placeholder='End Year (required)'
-                    />
-                    <FormBtn
-                      disabled={!(this.state.topic)}
-                      onClick={this.handleFormSubmit}
-                    >
-                      Search
-                    </FormBtn>
-                  </form>
-                </Col>
-                <Col md='6' sm='12'>
-                  <Subtitle>
-                    <h2>Article Results</h2>
-                  </Subtitle>
-                  {this.state.articles.length ? (
-                    <List>
-                      {this.state.articles.map(article => (
-                        <ListItem key={article._id}>
-                          <h4>{article.headline.main}</h4>
-                          <a href={article.web_url} target='_blank'>
-                            {article.web_url}
-                          </a>
-                          <p>{this.formatDate(article.pub_date)}</p>
-                          <SaveBtn onClick={() => this.saveArticle(article)} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  ) : (
-                    <p>Please fill out the form and press "Search" to display articles.</p>
-                  )}
-                </Col>
-              </Row>
-            </Container>
+          <TabPane tabId='1'>  
+            <Row>
+              <Col md='6' sm='12'>
+                <Subtitle>
+                  <h2>Search Articles</h2>
+                </Subtitle>
+                <form>
+                  <Input
+                    value={this.state.topic}
+                    onChange={this.handleInputChange}
+                    name='topic'
+                    placeholder='Topic (required)'
+                  />
+                  <Input
+                    value={this.state.startYear}
+                    onChange={this.handleInputChange}
+                    name='startYear'
+                    placeholder='Start Year (required)'
+                  />
+                  <Input
+                    value={this.state.endYear}
+                    onChange={this.handleInputChange}
+                    name='endYear'
+                    placeholder='End Year (required)'
+                  />
+                  <FormBtn
+                    disabled={!(this.state.topic)}
+                    onClick={this.handleFormSubmit}
+                  >
+                    Search
+                  </FormBtn>
+                </form>
+              </Col>
+              <Col md='6' sm='12'>
+                <Subtitle>
+                  <h2>Article Results</h2>
+                </Subtitle>
+                {this.state.articles.length ? (
+                  <List>
+                    {this.state.articles.map(article => (
+                      <ListItem key={article._id}>
+                        <h4>{article.headline.main}</h4>
+                        <a href={article.web_url} target='_blank'>
+                          {article.web_url}
+                        </a>
+                        <p>{this.formatDate(article.pub_date)}</p>
+                        <SaveBtn onClick={() => this.saveArticle(article)} />
+                      </ListItem>
+                    ))}
+                  </List>
+                ) : (
+                  <p>Please fill out the form and press "Search" to display articles.</p>
+                )}
+              </Col>
+            </Row>
           </TabPane>
-        
-          <TabPane tabId='2'>
-            <Container>
-              <Row>
-                <Col md='12' sm='12'>
-                  <Subtitle>
-                    <h2>Saved Articles</h2>
-                  </Subtitle>
-                  {this.state.savedArticles.length ? (
-                    <List>
-                      {this.state.savedArticles.map(article => (
-                        <ListItem key={article._id}>
-                          <h4>{article.title}</h4>
-                          <a href={article.link} target='_blank'>
-                            {article.link}
-                          </a>
-                          <p>{this.formatDate(article.date)}</p>
-                          <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  ) : (
-                    <p>There aren't any articles saved in your list.</p>
-                  )}
-                </Col>
-              </Row>
-            </Container>
+          <TabPane tabId='2'> 
+            <Row>
+              <Col md='12' sm='12'>
+                <Subtitle>
+                  <h2>Saved Articles</h2>
+                </Subtitle>
+                {this.state.savedArticles.length ? (
+                  <List>
+                    {this.state.savedArticles.map(article => (
+                      <ListItem key={article._id}>
+                        <h4>{article.title}</h4>
+                        <a href={article.link} target='_blank'>
+                          {article.link}
+                        </a>
+                        <p>{this.formatDate(article.date)}</p>
+                        <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+                      </ListItem>
+                    ))}
+                  </List>
+                ) : (
+                  <p>There aren't any articles saved in your list.</p>
+                )}
+              </Col>
+            </Row>
           </TabPane>
         </TabContent>
-        </Container>
       </Container>
+      <ModalPicker modalType='save_articles' />
     )
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import { Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 import './Banner.css'
 
 class Banner extends React.Component {
@@ -19,6 +19,7 @@ class Banner extends React.Component {
   }
   render() {
     return (
+      <Container fluid>
       <Navbar className='banner' color='dark' dark expand='md'>
         <NavbarBrand href='/' className='mr-auto ml-5 pl-4'><h1>NYT Article Search</h1></NavbarBrand>
         <NavbarToggler onClick={this.toggleNavbar} className='toggler ml-3 mr-5' />
@@ -35,7 +36,7 @@ class Banner extends React.Component {
             </NavItem>
           </Nav>
         </Collapse>
-      </Navbar>
+      </Navbar></Container>
     )
   }
 }
