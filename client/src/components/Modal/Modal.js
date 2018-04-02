@@ -1,6 +1,5 @@
 import React from 'react'
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-import Spinner from 'react-md-spinner'
 
 class ModalBox extends React.Component {
   constructor(props) {
@@ -21,11 +20,15 @@ class ModalBox extends React.Component {
   render() {
     return (
       <Modal isOpen={this.state.modal} toggle={this.toggle}>
-        <ModalHeader className='bg-primary text-white' toggle={this.toggle}>{this.props.title}</ModalHeader>
-        <ModalBody className='text-center'>
-          <Spinner size='100' singleColor='red' className='mt-5 mb-5' />
+        <ModalHeader className={this.props.headerStyle} toggle={this.toggle}>
+          {this.props.title}
+        </ModalHeader>
+        <ModalBody className={this.props.bodyStyle}>
+          {this.props.body}
         </ModalBody>
-        <ModalFooter>{this.props.footer}</ModalFooter>
+        <ModalFooter className={this.props.footerStyle}>
+          {this.props.footer}
+        </ModalFooter>
       </Modal>
     )
   }
