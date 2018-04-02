@@ -21,7 +21,7 @@ class Articles extends React.Component {
       endYear: '',
       activeTab: '1',
       searchModal: false,
-      saveModel: false,
+      saveModal: false,
     }
   }
 
@@ -75,21 +75,26 @@ class Articles extends React.Component {
     return d.toDateString()
   }
 
+  showModal = () => {
+    API.getArticles(this.state.topic, this.state.startYear, this.state.endYear)
+    .then(res => {
+      this.setState({
+        articles: res.data.response.docs,
+        topic: '',
+        startYear: '',
+        endYear: '',
+        searchModal: false,
+      })
+      console.log(this.state.articles)
+      console.log(this.state.articles.length)
+    })
+    .catch(err => console.log(err))
+  }
+
   handleFormSubmit = event => {
     event.preventDefault()
-    API.getArticles(this.state.topic, this.state.startYear, this.state.endYear)
-      .then(res => {
-        this.setState({
-          articles: res.data.response.docs,
-          topic: '',
-          startYear: '',
-          endYear: '',
-          searchModal: true,
-        })
-        console.log(this.state.articles)
-        console.log(this.state.articles.length)
-      })
-      .catch(err => console.log(err))
+    this.setState({ searchModal: true })
+    setTimeout(this.showModal, 3000)
   }
 
   render() {
@@ -152,21 +157,25 @@ class Articles extends React.Component {
                 <Subtitle>
                   <h2>Article Results</h2>
                 </Subtitle>
-                {this.state.articles.length ? (
-                  <List>
-                    {this.state.articles.map(article => (
-                      <ListItem key={article._id}>
-                        <h4>{article.headline.main}</h4>
-                        <a href={article.web_url} target='_blank'>
-                          {article.web_url}
-                        </a>
-                        <p>{this.formatDate(article.pub_date)}</p>
-                        <SaveBtn onClick={() => this.saveArticle(article)} />
-                      </ListItem>
-                    ))}
-                  </List>
+                {this.state.searchModal ? (
+                  <ModalPicker modalType='load_articles' /> 
                 ) : (
-                  <p>Please fill out the form and press "Search" to display articles.</p>
+                  this.state.articles.length ? (
+                    <List>
+                      {this.state.articles.map(article => (
+                        <ListItem key={article._id}>
+                          <h4>{article.headline.main}</h4>
+                          <a href={article.web_url} target='_blank'>
+                            {article.web_url}
+                          </a>
+                          <p>{this.formatDate(article.pub_date)}</p>
+                          <SaveBtn onClick={() => this.saveArticle(article)} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  ) : (
+                    <p>Please fill out the form and press "Search" to display articles.</p>
+                  )
                 )}
               </Col>
             </Row>
@@ -198,7 +207,6 @@ class Articles extends React.Component {
           </TabPane>
         </TabContent>
       </Container>
-      <ModalPicker modalType='save_articles' />
     )
   }
 }
