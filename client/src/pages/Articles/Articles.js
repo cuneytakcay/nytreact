@@ -22,6 +22,7 @@ class Articles extends React.Component {
       activeTab: '1',
       searchModal: false,
       saveModal: false,
+      deleteModal: false,
     }
   }
 
@@ -45,8 +46,11 @@ class Articles extends React.Component {
       .catch(err => console.log(err))
   }
 
-  showSaveModal = () => {
-    this.setState({ saveModal: false })
+  showModal = () => {
+    this.setState({ 
+      saveModal: false,
+      deleteModal: false,
+    })
   }
 
   saveArticle = article => {
@@ -56,15 +60,19 @@ class Articles extends React.Component {
       date: article.pub_date,
     })
       .then(res => {
-        this.loadSavedArticles()
         this.setState({ saveModal: true })
-        setTimeout(this.showSaveModal, 3000)
+        setTimeout(this.showModal, 3000)
+        this.loadSavedArticles()
       })
       .catch(err => console.log(err))
   }
 
   deleteArticle = id => {
     API.deleteArticle(id)
+      .then(res => {
+        this.setState({ deleteModal: true })
+        setTimeout(this.showModal, 3000)
+      })
       .then(res => this.loadSavedArticles())
       .catch(err => console.log(err))
   }
@@ -161,10 +169,7 @@ class Articles extends React.Component {
                 <Subtitle>
                   <h2>Article Results</h2>
                 </Subtitle>
-                {this.state.searchModal ? (
-                  <ModalPicker modalType='load_articles' /> 
-                ) : (
-                  this.state.articles.length ? (
+                {this.state.articles.length ? (
                     <List>
                       {this.state.articles.map(article => (
                         <ListItem key={article._id}>
@@ -179,10 +184,7 @@ class Articles extends React.Component {
                     </List>
                   ) : (
                     <p>Please fill out the form and press "Search" to display articles.</p>
-                  )
-                )}
-
-                {this.state.saveModal ? <ModalPicker modalType='save_articles' /> : console.log()}
+                  )}
               </Col>
             </Row>
           </TabPane>
@@ -212,6 +214,9 @@ class Articles extends React.Component {
             </Row>
           </TabPane>
         </TabContent>
+        {this.state.searchModal ? <ModalPicker modalType='load_articles' /> : console.log()}
+        {this.state.saveModal ? <ModalPicker modalType='save_articles' /> : console.log()}
+        {this.state.deleteModal ? <ModalPicker modalType='delete_articles' /> : console.log()}
       </Container>
     )
   }
