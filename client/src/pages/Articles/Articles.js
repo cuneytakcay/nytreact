@@ -110,8 +110,15 @@ class Articles extends React.Component {
   }
 
   render() {
+    const modal = () => {
+      if (this.state.searchModal) return <ModalPicker modalType='load_articles' />
+      if (this.state.saveModal) return <ModalPicker modalType='save_articles' />
+      if (this.state.deleteModal) return <ModalPicker modalType='delete_articles' />
+    }
+    
     return (
       <Container>
+        {modal()}
         <Nav tabs>
           <NavItem>
             <NavLink
@@ -214,9 +221,6 @@ class Articles extends React.Component {
             </Row>
           </TabPane>
         </TabContent>
-        {this.state.searchModal ? <ModalPicker modalType='load_articles' /> : console.log()}
-        {this.state.saveModal ? <ModalPicker modalType='save_articles' /> : console.log()}
-        {this.state.deleteModal ? <ModalPicker modalType='delete_articles' /> : console.log()}
       </Container>
     )
   }
