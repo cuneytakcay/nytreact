@@ -29,10 +29,10 @@ class Banner extends React.Component {
               <NavLink href='/'>Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='/user/'>Log in</NavLink>
+              <NavLink href='/login/'>Log in</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href='/user/'>Sign up</NavLink>
+              <NavLink href='/signup/'>Sign up</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
