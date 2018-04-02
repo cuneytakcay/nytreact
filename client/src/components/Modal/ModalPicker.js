@@ -4,10 +4,10 @@ import ModalBox from './Modal'
 const ModalPicker = (props) => {
   switch(props.modalType) {
     case 'load_articles':
-      return <ModalBox title='Articles are loading...' body='Some text' />
+      return <ModalBox title='Articles are loading...' />
 
     case 'save_articles':
-      return <ModalBox title='Saving article...' body='Some text' />
+      return <ModalBox title='Saving article...' />
 
     default:
       return null
