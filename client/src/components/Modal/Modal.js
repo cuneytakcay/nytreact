@@ -20,12 +20,12 @@ class ModalBox extends React.Component {
 
   render() {
     return (
-      <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-        <ModalHeader toggle={this.toggle}>{this.props.title}</ModalHeader>
+      <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <ModalHeader className='bg-primary text-white' toggle={this.toggle}>{this.props.title}</ModalHeader>
         <ModalBody className='text-center'>
-          <Spinner size='100' />
+          <Spinner size='100' singleColor='red' className='mt-5 mb-5' />
         </ModalBody>
-        <ModalFooter></ModalFooter>
+        <ModalFooter>{this.props.footer}</ModalFooter>
       </Modal>
     )
   }

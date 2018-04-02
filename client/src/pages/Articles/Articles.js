@@ -45,19 +45,25 @@ class Articles extends React.Component {
       .catch(err => console.log(err))
   }
 
+  showSaveModal = () => {
+    this.setState({ saveModal: false })
+  }
+
   saveArticle = article => {
-    console.log(article)
     API.saveArticle({
       title: article.headline.main,
       link: article.web_url,
       date: article.pub_date,
     })
-      .then(res => this.loadSavedArticles())
+      .then(res => {
+        this.loadSavedArticles()
+        this.setState({ saveModal: true })
+        setTimeout(this.showSaveModal, 3000)
+      })
       .catch(err => console.log(err))
   }
 
   deleteArticle = id => {
-    console.log(`Article with id ${id} will be deleted`)
     API.deleteArticle(id)
       .then(res => this.loadSavedArticles())
       .catch(err => console.log(err))
@@ -75,7 +81,7 @@ class Articles extends React.Component {
     return d.toDateString()
   }
 
-  showModal = () => {
+  listArticles = () => {
     API.getArticles(this.state.topic, this.state.startYear, this.state.endYear)
     .then(res => {
       this.setState({
@@ -85,8 +91,6 @@ class Articles extends React.Component {
         endYear: '',
         searchModal: false,
       })
-      console.log(this.state.articles)
-      console.log(this.state.articles.length)
     })
     .catch(err => console.log(err))
   }
@@ -94,7 +98,7 @@ class Articles extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault()
     this.setState({ searchModal: true })
-    setTimeout(this.showModal, 3000)
+    setTimeout(this.listArticles, 3000)
   }
 
   render() {
@@ -137,13 +141,13 @@ class Articles extends React.Component {
                     value={this.state.startYear}
                     onChange={this.handleInputChange}
                     name='startYear'
-                    placeholder='Start Year (required)'
+                    placeholder='From yyyy (required)'
                   />
                   <Input
                     value={this.state.endYear}
                     onChange={this.handleInputChange}
                     name='endYear'
-                    placeholder='End Year (required)'
+                    placeholder='To yyyy (required)'
                   />
                   <FormBtn
                     disabled={!(this.state.topic)}
@@ -177,6 +181,8 @@ class Articles extends React.Component {
                     <p>Please fill out the form and press "Search" to display articles.</p>
                   )
                 )}
+
+                {this.state.saveModal ? <ModalPicker modalType='save_articles' /> : console.log()}
               </Col>
             </Row>
           </TabPane>
