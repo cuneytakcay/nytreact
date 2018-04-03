@@ -1,5 +1,6 @@
 // Require dependencies
 const express = require('express')
+const path = require('path')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
@@ -22,9 +23,9 @@ app.use(require('./routes'))
 // For production only, to serve the index.html
 if( process.env.NODE_ENV === 'production' ){
 	app.use(express.static('client/build'))
-  app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/client/build/index.html')
-  })
+ 	app.get('*', (req, res) => {
+		res.sendFile(__dirname + '/client/build/index.html')
+	})
 }
 
 // Connect to the Mongo DB
