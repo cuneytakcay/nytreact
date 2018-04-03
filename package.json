@@ -11,7 +11,8 @@
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
     "test": "jest",
-    "installDeps": "yarn && cd client && yarn"
+    "installDeps": "yarn && cd client && yarn",
+    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
