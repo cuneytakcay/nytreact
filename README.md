@@ -10,7 +10,7 @@ NYT Article Search is a full-stack app that uses MongoDB for database, Express.j
 Primary purpose of building this site was to practice MERN scaffolding that uses Mongo, Express, React and NodeJS.  
 
 ### Demo
-[Here is a demonstration of the site.](https://nytreactarticlesearch.herokuapp.com/)
+[Here is a demonstration of the site.](http://desolate-waters-41414.herokuapp.com/)
 
 ### To run locally
 
