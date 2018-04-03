@@ -12,12 +12,9 @@
   "license": "MIT",
   "scripts": {
     "server": "node server.js",
-    "client": "cd client && npm run start",
-    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "yarn build",
-    "install": "(cd client && yarn) && yarn",
-    "start:prod": "yarn start:prod"
+    "client": "cd client && yarn start",
+    "start": "concurrently \"node server.js\" \"yarn client\"",
+    "heroku-postbuild": "cd client && yarn --production=false && yarn run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
