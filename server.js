@@ -22,10 +22,10 @@ app.use(require('./routes'))
 
 // For production only, to serve the index.html
 if( process.env.NODE_ENV === 'production' ){
-	app.use(express.static(path.resolve(__dirname, 'client/build')))
- 	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'client/build/index.html'))
-	})
+	app.use(express.static('client/build'))
+  app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/client/build/index.html')
+  })
 }
 
 // Connect to the Mongo DB

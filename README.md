@@ -12,6 +12,18 @@ Primary purpose of building this site was to practice MERN scaffolding that uses
 ## Demo
 [Here is a demonstration of the site.](https://nytreactarticlesearch.herokuapp.com/)
 
+### To run locally
+
+```
+git clone <repo>
+cd nytreact
+yarn
+cd client
+yarn
+cd ..
+yarn start
+```
+
 ## Acknowledgments
 
 * University of Arizona Coding Bootcamp
