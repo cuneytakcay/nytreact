@@ -1,4 +1,4 @@
-# NYT - Article Scrubber
+# NYT - Article Search
 
 ![02](https://user-images.githubusercontent.com/25511541/38263532-30db661a-3725-11e8-8da2-23e306eeae64.JPG)
 ![03](https://user-images.githubusercontent.com/25511541/38263541-33e9577c-3725-11e8-81b7-b741c19e46db.JPG)
@@ -9,7 +9,7 @@ NYT Article Search is a full-stack app that uses MongoDB for database, Express.j
 
 Primary purpose of building this site was to practice MERN scaffolding that uses Mongo, Express, React and NodeJS.  
 
-## Demo
+### Demo
 [Here is a demonstration of the site.](https://nytreactarticlesearch.herokuapp.com/)
 
 ### To run locally
