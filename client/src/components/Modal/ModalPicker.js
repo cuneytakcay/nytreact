@@ -11,7 +11,6 @@ const ModalPicker = (props) => {
                 footer='Thanks for your patience.' 
                 headerStyle='text-primary'
                 bodyStyle='text-center'
-      					footerStyle='bg-primary text-white'
             	/>
 
     case 'save_articles':
@@ -20,15 +19,13 @@ const ModalPicker = (props) => {
       					body={<Spinner size='100' singleColor='red' className='mt-5 mb-5' />}
       					footer='Thanks for your patience.'
       					headerStyle='text-success'
-      					bodyStyle='text-center'
-      					footerStyle='bg-success text-white' 
+      					bodyStyle='text-center' 
       				/>
 
     case 'delete_articles':
       return <ModalBox 
       					body='Article has been removed'
                 bodyStyle='pt-5 pb-5 text-center'
-      					footerStyle='bg-danger text-white'
       				/>
 
     default:
