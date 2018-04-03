@@ -1,17 +1,23 @@
 {
   "name": "nytreact",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.7.1",
+    "yarn": "1.5.1"
+  },
   "main": "server.js",
   "repository": "git@github.com:cuneytakcay/nytreact.git",
   "author": "Cuneyt Akcay <cuneytakcay@gmail.com>",
   "license": "MIT",
   "scripts": {
     "server": "node server.js",
-    "build": "cd client && yarn build",
+    "client": "cd client && npm run start",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "cd client && npm run build",
     "heroku-postbuild": "yarn build",
-    "install": "(cd client && yarn) && (cd server && yarn)",
-    "start": "concurrently \"cd server && yarn start\" \"cd client && yarn start\"",
-    "start:prod": "cd server && yarn start:prod"
+    "install": "(cd client && yarn) && yarn",
+    "start:prod": "yarn start:prod"
   },
   "dependencies": {
     "axios": "^0.18.0",
