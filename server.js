@@ -17,16 +17,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Set up morgan logger
 app.use(logger('dev'))
 
-// Require and use routing modules
-app.use(require('./routes'))
-
 // For production only, to serve the index.html
 if( process.env.NODE_ENV === 'production' ){
 	app.use(express.static('client/build'))
-  app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/client/build/index.html')
-  })
 }
+
+// Require and use routing modules
+app.use(require('./routes'))
+
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/client/build/index.html')
+})
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nyt")
