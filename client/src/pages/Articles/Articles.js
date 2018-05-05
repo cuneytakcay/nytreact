@@ -165,7 +165,7 @@ class Articles extends React.Component {
                     placeholder='To yyyy (required)'
                   />
                   <FormBtn
-                    disabled={!(this.state.topic)}
+                    disabled={!(this.state.topic) || !(this.state.endYear) || !(this.state.startYear)}
                     onClick={this.handleFormSubmit}
                   >
                     Search
